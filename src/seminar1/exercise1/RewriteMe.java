@@ -27,13 +27,15 @@ public class RewriteMe {
 
     //Skriv en funktioner som returnerar hur många frågor det finns i databasen?
     public int getAmountOfQuestionsInDatabase(){
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (int) questions.stream()
+                .count();
 
     }
 
     //Hur många frågor finns i databasen för en viss, given kategori (som ges som inparameter)
     public int getAmountOfQuestionsForACertainCategory(Category category){
-        throw new UnsupportedOperationException("Not supported yet.");
+        return (int) questions.stream()
+                .filter(q -> q.getCategory() == category).count();
 
     }
 
