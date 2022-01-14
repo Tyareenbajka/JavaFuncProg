@@ -39,7 +39,7 @@ class Tomteland {
 
     // current namn är den tomte vars underlydande ni vill ta fram
     //res är listan som håller alla underlydande
-    fun getUnderlings(currentName: String, res: MutableList<String>): List<String> {
+    fun getUnderlings2(currentName: String, res: MutableList<String>): List<String> {
         res.add(currentName)
         return res
     }
@@ -70,7 +70,7 @@ class Tomteland {
         return res
     }
 
-    fun playgroundUnderlings2Recursive(currentName: String, res: MutableList<String>): List<String> {
+    fun getUnderlings(currentName: String, res: MutableList<String>): List<String> {
 
         fun helper(name: String, list: List<String>, currentList: MutableList<String>){
             for(s in list){
@@ -85,6 +85,28 @@ class Tomteland {
             return if(index == hierarchy[currentName]?.size) res
             else {
                 helper(currentName, hierarchy[currentName]!!,res)
+                res
+            }
+        }
+        return underlings(0,res)
+    }
+
+    fun getUnderlings3(currentName: String, res: MutableList<String>): List<String> {
+
+        fun helper(list: List<String>, currentList: MutableList<String>){
+            for(s in list){
+                if(hierarchy.containsKey(s)) {
+                    currentList.add(s)
+                    helper(hierarchy[s]!!, currentList)
+                } else currentList.add(s)
+            }
+        }
+
+        fun underlings(index: Int, res: MutableList<String>): List<String>{
+            return if(index == hierarchy[currentName]?.size) res
+            else {
+
+                helper(hierarchy[currentName]!!,res)
                 res
             }
         }
@@ -106,8 +128,7 @@ fun main() {
     val list2: MutableList<String> = mutableListOf()
     //println(tomteland.getUnderlings("Glader", list))
     //println(tomteland.playgroundUnderlings("Räven", list))
-    println(tomteland.playgroundUnderlings2List("Tomten", list))
-    println(tomteland.playgroundUnderlings2Recursive("Tomten", list2))
+    println(tomteland.getUnderlings3("Tomten", list2))
 
 
 
