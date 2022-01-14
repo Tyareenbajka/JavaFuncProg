@@ -3,16 +3,28 @@ package seminar2.exercise1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TomtelandTest {
 
     Tomteland tl = new Tomteland();
+
+    /*
+    Tomtarna på Nordpolen har en strikt chefs-hierarki:
+
+                    Högsta chefen för allt är "Tomten"
+                    Under "Tomten" jobbar "Glader" och "Butter"
+                    Under "Glader" jobbar "Tröger", "Trötter" och "Blyger"
+                    Under "Butter" jobbar "Rådjuret", "Nyckelpigan", "Haren" och "Räven"
+                    Under "Trötter" jobbar "Skumtomten"
+                    Under "Skumtomten" jobbar "Dammråttan"
+                    Under "Räven" jobbar "Gråsuggan" och "Myran"
+                    Under "Myran" jobbar "Bladlusen"
+
+     */
+
 
     List<String> uTomten = Arrays.asList("Tröger", "Trötter", "Blyger", "Dammråttan", "Skumtomten", "Glader",
             "Butter", "Rådjuret", "Nyckelpigan", "Haren", "Räven", "Gråsuggan", "Myran", "Bladlusen");
