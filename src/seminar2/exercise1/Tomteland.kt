@@ -34,86 +34,19 @@ class Tomteland {
         "Myran" to listOf("Bladlusen")
     )
 
-    // [glader[], tröger, trötter[], skumtomten[], dammråttan, blyger, butter[],
-    // rådjuret, nyckelpiga, haren, räven[], gråsuggan, myran, bladlusen]
-
     // current namn är den tomte vars underlydande ni vill ta fram
     //res är listan som håller alla underlydande
-    fun getUnderlings2(currentName: String, res: MutableList<String>): List<String> {
-        res.add(currentName)
-        return res
-    }
-
-    fun playgroundUnderlings(currentName: String, res: MutableList<String>): List<String> {
-
-        tailrec fun underlings(counter: Int, currentName: String, res: MutableList<String>): List<String>{
-            return if(counter == hierarchy.size) return res
-            else underlings(counter + 1, currentName, res)
-
-        }
-        return underlings(0, currentName, res)
-    }
-
-    fun playgroundUnderlings2List(currentName: String, res: MutableList<String>): List<String> {
-
-        for(s in hierarchy.get(currentName)!!) {
-            if(hierarchy.containsKey(s)) {
-                res.add(s)
-                for (s2 in hierarchy[s]!!) {
-                    if(hierarchy.containsKey(s2)){
-                        res.add(s2)
-                        for (s3 in hierarchy[s2]!!) res.add(s3)
-                    } else res.add(s2)
-                }
-            } else res.add(s)
-        }
-        return res
-    }
-
     fun getUnderlings(currentName: String, res: MutableList<String>): List<String> {
 
-        fun helper(name: String, list: List<String>, currentList: MutableList<String>){
-            for(s in list){
-                if(hierarchy.containsKey(s)) {
-                    currentList.add(s)
-                    helper(s, hierarchy[s]!!, currentList)
-                } else currentList.add(s)
+        fun underlings(list: List<String>): List<String> {
+            for (s in list) {
+                res.add(s)
+                if (hierarchy.containsKey(s)) underlings(hierarchy[s]!!)
             }
+            return res
         }
-
-         fun underlings(index: Int, res: MutableList<String>): List<String>{
-            return if(index == hierarchy[currentName]?.size) res
-            else {
-                helper(currentName, hierarchy[currentName]!!,res)
-                res
-            }
-        }
-        return underlings(0,res)
+        return underlings(hierarchy[currentName]!!)
     }
-
-    fun getUnderlings3(currentName: String, res: MutableList<String>): List<String> {
-
-        fun helper(list: List<String>, currentList: MutableList<String>){
-            for(s in list){
-                if(hierarchy.containsKey(s)) {
-                    currentList.add(s)
-                    helper(hierarchy[s]!!, currentList)
-                } else currentList.add(s)
-            }
-        }
-
-        fun underlings(index: Int, res: MutableList<String>): List<String>{
-            return if(index == hierarchy[currentName]?.size) res
-            else {
-
-                helper(hierarchy[currentName]!!,res)
-                res
-            }
-        }
-        return underlings(0,res)
-    }
-
-
 }
 
 fun main() {
@@ -123,13 +56,7 @@ fun main() {
     //listan fylls på successivt när vi rekurserar
 
     val tomteland = Tomteland()
-
     val list: MutableList<String> = mutableListOf()
-    val list2: MutableList<String> = mutableListOf()
-    //println(tomteland.getUnderlings("Glader", list))
-    //println(tomteland.playgroundUnderlings("Räven", list))
-    println(tomteland.getUnderlings3("Tomten", list2))
 
-
-
+    println(tomteland.getUnderlings("Tomten", list))
 }
