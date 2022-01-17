@@ -87,8 +87,10 @@ class Tomteland {
 
         fun underlings(list: List<String>): List<String> {
             for (s in list) {
-                res.add(s)
-                if (hierarchy.containsKey(s)) underlings(hierarchy[s]!!)
+                if (hierarchy.containsKey(s)) {
+                    res.add(s)
+                    underlings(hierarchy[s]!!)
+                } else res.add(s)
             }
             return res
         }
