@@ -1,7 +1,9 @@
 package seminar2.exercise1
 
-
 /*
+
+Philip Tonaczew
+
 Tomtarna på Nordpolen har en strikt chefs-hierarki
 
 Högsta chefen för allt är "Tomten"
@@ -50,7 +52,6 @@ class Tomteland {
 }
 
 fun main() {
-
     //Exempel på anrop till den rekursiva funktionen getUnderlings,
     // här är tanken att hitta Gladers underlydande
     //listan fylls på successivt när vi rekurserar
