@@ -47,7 +47,7 @@ class Tomteland {
             }
             return res
         }
-        return underlings(hierarchy[currentName]!!)
+        return if(hierarchy.contains(currentName)) underlings(hierarchy[currentName]!!) else res
     }
 }
 
@@ -59,5 +59,5 @@ fun main() {
     val tomteland = Tomteland()
     val list: MutableList<String> = mutableListOf()
 
-    println(tomteland.getUnderlings("Tomten", list))
+    println(tomteland.getUnderlings("Dammråttan", list))
 }
